@@ -1,13 +1,15 @@
-const _ = require('lodash');
+const cloneFreeze = require('./clone-and-freeze');
 
-const obj = {
+const original = {
+    name: 'Yuval',
     inner: {
-        name: 'Yuval'
+        array: [1,2,3]
     }
 }
 
-const copy = _.cloneDeep(obj);
+const copy = cloneFreeze.cloneAndFreeze(original);
 
-copy.inner.name = 'Oren';
+original.name = '[original]';
+copy.name = '[copy]';
 
-console.log(obj.inner.name, copy.inner.name)
+console.log(original.name, copy.name)
